@@ -4,8 +4,8 @@ namespace Game
 {
     public class Map : MonoBehaviour
     {
-        [SerializeField] private MeshRenderer _ground;
+        [SerializeField] private MeshRenderer _spawnArea;
 
-        public MeshRenderer Ground => _ground;
+        public MeshRenderer SpawnArea => _spawnArea;
     } 
 }

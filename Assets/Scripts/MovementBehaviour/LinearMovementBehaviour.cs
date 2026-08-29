@@ -10,7 +10,12 @@ namespace Game
 
         public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody)
         {
-            rigidbody.linearVelocity = direction.normalized * _speed;
+            var originalVelocity = rigidbody.linearVelocity;
+
+            var newVelocity = direction.normalized * _speed;
+            newVelocity.y = originalVelocity.y;
+
+            rigidbody.linearVelocity = newVelocity;
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Game
 
         private void Spawn()
         {
-            var ground = _map.Ground;
+            var spawnArea = _map.SpawnArea;
 
             var animalConfig = _animalPool.GetRandom();
 
@@ -56,7 +56,7 @@ namespace Game
             var animalInstance = Object.Instantiate(_animalPrefab);
             animalInstance.Init(animalConfig);
 
-            var position = Helper.SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(ground,
+            var position = Helper.SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(spawnArea,
                 animalInstance.Collider,
                 _mapSpacingCheck,
                 _candidatesBuffer);

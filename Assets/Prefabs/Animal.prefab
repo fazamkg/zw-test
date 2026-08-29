@@ -150,7 +150,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &5182915408383869498
 BoxCollider:
@@ -185,6 +185,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a30096c14312bf42b8bd13fa7e02334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Animal
-  _agent: {fileID: 0}
   _rigidbody: {fileID: 3446782059063210130}
   _collider: {fileID: 5182915408383869498}

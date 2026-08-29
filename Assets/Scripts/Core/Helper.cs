@@ -13,14 +13,14 @@ namespace Game
             return direction;
         }
 
-        public static Vector3 SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(MeshRenderer ground,
+        public static Vector3 SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(MeshRenderer spawnArea,
             Collider collider,
             float spacing,
             List<Vector3> candidates)
         {
             candidates.Clear();
 
-            var bounds = ground.bounds;
+            var bounds = spawnArea.bounds;
 
             var min = bounds.min;
             var max = bounds.max;
@@ -29,7 +29,7 @@ namespace Game
             var colliderExtents = colliderBounds.extents;
 
             var fromX = min.x + colliderExtents.x;
-            var fromY = max.y + colliderExtents.y;
+            var fromY = max.y + colliderExtents.y + 0.1f;
             var fromZ = min.z + colliderExtents.z;
 
             var toX = max.x - colliderExtents.x;

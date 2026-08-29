@@ -39,7 +39,17 @@ namespace Game
             var otherAnimal = collider.GetComponent<Animal>();
             if (otherAnimal == null)
             {
-                _direction = Helper.GetRandomDirectionHorizontal();
+                for (var i = 0; i < collision.contactCount; i++)
+                {
+                    var contact = collision.GetContact(i);
+                    if (contact.normal == Vector3.up)
+                    {
+                        continue;
+                    }
+
+                    _direction = Vector3.Reflect(_direction, contact.normal);
+                    return;
+                }
                 return;
             }
 
