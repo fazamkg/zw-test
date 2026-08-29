@@ -1,35 +1,3 @@
-### C++
-# Object files
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Static libraries
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Debug files
-*.dSYM/
-*.idb
-*.pdb
-
 ### C#
 # Build results
 [Bb]in/
@@ -45,35 +13,11 @@
 # Debug symbols
 *.pdb
 
-# NuGet Packages
-*.nupkg
-**/[Pp]ackages/*
-!**/[Pp]ackages/build/
-
 # .NET build artifacts
 artifacts/
 
 # Publish output
 publish/
-
-### Objective-C
-# Xcode user settings
-xcuserdata/
-
-# Xcode build data
-DerivedData/
-
-# Obj-C/Swift specific
-*.hmap
-
-# App packaging
-*.ipa
-*.dSYM.zip
-*.dSYM
-
-# Playgrounds
-timeline.xctimeline
-playground.xcworkspace
 
 ### Unity
 # Unity generated directories
@@ -100,19 +44,6 @@ playground.xcworkspace
 *.sln
 *.suo
 
-### Windows
-# Windows thumbnail cache files
-Thumbs.db
-
-# Folder config file
-[Dd]esktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows shortcuts
-*.lnk
-
 ### VisualStudio
 # User-specific files
 *.suo
@@ -135,13 +66,6 @@ x86/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-
-# NuGet
-*.nupkg
-**/[Pp]ackages/*
-!**/[Pp]ackages/build/
-*.nuget.props
-*.nuget.targets
 
 # Publish Web Output
 *.[Pp]ublish.xml
