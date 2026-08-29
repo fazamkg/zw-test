@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.GameConfig
   _animalSpawnBehaviour:
     rid: 7446921453224067354
+  _animalPrefab: {fileID: 954605112954856223, guid: 60f2b06163fe63c4584147a30faa6bef, type: 3}
   references:
     version: 2
     RefIds:
     - rid: 7446921453224067354
       type: {class: DefaultAnimalSpawnBehaviour, ns: Game, asm: Assembly-CSharp}
-      data: 
+      data:
+        _minSpawnIntervalSeconds: 1
+        _maxSpawnIntervalSeconds: 2
+        _animalPool:
+        - {fileID: 11400000, guid: 601644e8c78c5c248b5b69eaff0c8480, type: 2}
+        - {fileID: 11400000, guid: 6cbf9d4032e97944c89e4c2966eafe4c, type: 2}
+        _mapSpacingCheck: 1

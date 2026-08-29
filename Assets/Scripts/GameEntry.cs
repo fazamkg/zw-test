@@ -14,7 +14,11 @@ namespace Game
             DontDestroyOnLoad(gameObject);
 
             SceneManager.LoadScene(Consts.MAIN_SCENE_NAME);
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
 
+        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
             var map = FindFirstObjectByType<Map>(FindObjectsInactive.Exclude);
 
             _animalFactory = new AnimalFactory(map, _gameConfig);
@@ -22,7 +26,7 @@ namespace Game
 
         private void Update()
         {
-            _animalFactory.Tick(Time.deltaTime);
+            _animalFactory?.Tick(Time.deltaTime);
         }
     } 
 }

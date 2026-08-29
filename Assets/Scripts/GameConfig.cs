@@ -6,7 +6,9 @@ namespace Game
     public class GameConfig : ScriptableObject
     {
         [SerializeReference, SubclassSelector] private AnimalSpawnBehaviour _animalSpawnBehaviour;
+        [SerializeField] private Animal _animalPrefab;
 
         public AnimalSpawnBehaviour AnimalSpawnBehaviour => _animalSpawnBehaviour;
+        public Animal AnimalPrefab => _animalPrefab;
     } 
 }

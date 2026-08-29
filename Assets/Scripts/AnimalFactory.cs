@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Game
 {
     public class AnimalFactory
@@ -11,6 +9,8 @@ namespace Game
         {
             _map = map;
             _gameConfig = gameConfig;
+
+            _gameConfig.AnimalSpawnBehaviour.OnInit(_map, _gameConfig.AnimalPrefab);
         }
 
         public void Tick(float delta)

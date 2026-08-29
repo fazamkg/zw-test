@@ -33,6 +33,8 @@ namespace Game
 
             if (_currentTimeSeconds > _currentIntervalSeconds)
             {
+                _currentTimeSeconds = 0f;
+
                 SetNewInterval();
 
                 Spawn();

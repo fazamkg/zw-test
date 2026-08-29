@@ -7,7 +7,10 @@ namespace Game
     {
         [SerializeField] private string _name = Consts.ANIMAL_DEFAULT_NAME;
         [SerializeReference, SubclassSelector] private AnimalRoleProvider _animalRoleProvider;
+        [SerializeReference, SubclassSelector] private MovementBehaviour _movementBehaviour;
 
         public string Name => _name;
+        public AnimalRoleProvider AnimalRoleProvider => _animalRoleProvider;
+        public MovementBehaviour MovementBehaviour => _movementBehaviour;
     } 
 }

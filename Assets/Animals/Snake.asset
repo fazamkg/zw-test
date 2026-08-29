@@ -15,6 +15,8 @@ MonoBehaviour:
   _name: Snake
   _animalRoleProvider:
     rid: 7446921453224067338
+  _movementBehaviour:
+    rid: 7446921453224067356
   references:
     version: 2
     RefIds:
@@ -25,4 +27,7 @@ MonoBehaviour:
           rid: 7446921453224067347
     - rid: 7446921453224067347
       type: {class: RandomSurvivorBehaviour, ns: Game, asm: Assembly-CSharp}
+      data: 
+    - rid: 7446921453224067356
+      type: {class: LinearMovementBehaviour, ns: Game, asm: Assembly-CSharp}
       data: 

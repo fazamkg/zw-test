@@ -5,6 +5,14 @@ namespace Game
 {
     public static class Helper
     {
+        public static Vector3 GetRandomDirectionHorizontal()
+        {
+            Vector3 direction = Random.onUnitCircle;
+            direction.z = direction.y;
+            direction.y = 0f;
+            return direction;
+        }
+
         public static Vector3 SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(MeshRenderer ground,
             Collider collider,
             float spacing,
