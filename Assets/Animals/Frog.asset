@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb060f1e84671498de8e3ec46ae196, type: 3}
-  m_Name: Animal Config
+  m_Name: Frog
   m_EditorClassIdentifier: Assembly-CSharp::Game.AnimalConfig
-  _name: Animal Name
+  _name: Frog
   _animalRoleProvider:
     rid: 7446921453224067338
   references:
