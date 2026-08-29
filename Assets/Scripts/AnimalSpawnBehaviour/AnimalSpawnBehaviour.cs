@@ -1,4 +1,3 @@
-using UnityEngine;
 using System;
 
 namespace Game
@@ -6,8 +5,8 @@ namespace Game
     [Serializable]
     public abstract class AnimalSpawnBehaviour
     {
-        public abstract void OnInit(GameState gameState, Map map, Animal animalPrefab);
+        public abstract void OnInit(AnimalSpawnState input);
 
-        public abstract void Tick(float delta);
+        public abstract void Tick(AnimalSpawnState input);
     } 
 }

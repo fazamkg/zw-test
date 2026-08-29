@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
-using System.Collections.Generic;
 using Object = UnityEngine.Object;
 
 namespace Game
@@ -14,58 +13,48 @@ namespace Game
         [SerializeField] private AnimalConfig[] _animalPool;
         [SerializeField] private float _mapSpacingCheck = 1f;
 
-        private float _currentTimeSeconds;
-        private float _currentIntervalSeconds;
-        private GameState _gameState;
-        private Map _map;
-        private Animal _animalPrefab;
-        private List<Vector3> _candidatesBuffer = new List<Vector3>();
-
-        public override void OnInit(GameState gameState, Map map, Animal animalPrefab)
+        public override void OnInit(AnimalSpawnState input)
         {
-            _gameState = gameState;
-            _map = map;
-            _animalPrefab = animalPrefab;
-            SetNewInterval();
+            SetNewInterval(input);
         }
 
-        public override void Tick(float delta)
+        public override void Tick(AnimalSpawnState input)
         {
-            _currentTimeSeconds += delta;
+            input.timer += input.delta;
 
-            if (_currentTimeSeconds > _currentIntervalSeconds)
+            if (input.timer > input.currentIntervalSeconds)
             {
-                _currentTimeSeconds = 0f;
+                input.timer = 0f;
 
-                SetNewInterval();
+                SetNewInterval(input);
 
-                Spawn();
+                Spawn(input);
             }
         }
 
-        private void SetNewInterval()
+        private void SetNewInterval(AnimalSpawnState input)
         {
-            _currentIntervalSeconds = Random.Range(_minSpawnIntervalSeconds, _maxSpawnIntervalSeconds);
+            input.currentIntervalSeconds = Random.Range(_minSpawnIntervalSeconds, _maxSpawnIntervalSeconds);
         }
 
-        private void Spawn()
+        private void Spawn(AnimalSpawnState input)
         {
-            var spawnArea = _map.SpawnArea;
+            var spawnArea = input.map.SpawnArea;
 
             var animalConfig = _animalPool.GetRandom();
 
             // todo: object pool
-            var animalInstance = Object.Instantiate(_animalPrefab);
+            var animalInstance = Object.Instantiate(input.animalPrefab);
             animalInstance.Init(animalConfig);
 
             var position = Helper.SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(spawnArea,
                 animalInstance.Collider,
                 _mapSpacingCheck,
-                _candidatesBuffer);
+                input.candidatesBuffer);
 
             animalInstance.transform.position = position;
 
-            _gameState.OnAnimalSpawn(animalInstance);
+            input.gameState.OnAnimalSpawn(animalInstance);
         }
     } 
 }
