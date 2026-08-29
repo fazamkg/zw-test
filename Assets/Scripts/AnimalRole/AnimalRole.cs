@@ -2,10 +2,10 @@ namespace Game
 {
     public abstract class AnimalRole
     {
-        public abstract void OnCollision(AnimalRole other);
+        public abstract AnimalCollisionResultPair OnCollision(AnimalRole other);
 
-        public abstract void CollideWithPrey(AnimalPreyRole prey);
+        public abstract AnimalCollisionResultPair CollideWithPrey(AnimalPreyRole prey);
 
-        public abstract void CollideWithPredator(AnimalPredatorRole predator);
+        public abstract AnimalCollisionResultPair CollideWithPredator(AnimalPredatorRole predator);
     } 
 }

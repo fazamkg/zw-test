@@ -22,7 +22,10 @@ MonoBehaviour:
     RefIds:
     - rid: 7446921453224067355
       type: {class: JumpMovementBehaviour, ns: Game, asm: Assembly-CSharp}
-      data: 
+      data:
+        _jumpIntervalSeconds: 2
+        _jumpStrength: 3
+        _jumpAngle: 45
     - rid: 7446921453224067357
       type: {class: AnimalPreyRoleProvider, ns: Game, asm: Assembly-CSharp}
       data: 

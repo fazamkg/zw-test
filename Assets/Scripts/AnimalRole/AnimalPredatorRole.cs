@@ -9,19 +9,43 @@ namespace Game
             _predatorPredatorResolveBehaviour = behaviour;
         }
 
-        public override void OnCollision(AnimalRole other)
+        public override AnimalCollisionResultPair OnCollision(AnimalRole other)
         {
-            other.CollideWithPredator(this);
+            return other.CollideWithPredator(this);
         }
 
-        public override void CollideWithPredator(AnimalPredatorRole predator)
+        public override AnimalCollisionResultPair CollideWithPredator(AnimalPredatorRole predator)
         {
-            // resolve via behaviour
+            var winner = _predatorPredatorResolveBehaviour.Resolve(this, predator);
+
+            var pair = new AnimalCollisionResultPair();
+
+            var self = new AnimalCollisionResult();
+            self.IsDead = winner != this;
+            self.Ate = winner == this;
+            pair.Self = self;
+
+            var other = new AnimalCollisionResult();
+            other.IsDead = winner == this;
+            other.Ate = winner != this;
+            pair.Other = other;
+
+            return pair;
         }
 
-        public override void CollideWithPrey(AnimalPreyRole prey)
+        public override AnimalCollisionResultPair CollideWithPrey(AnimalPreyRole prey)
         {
-            // eat them and display Tasty
+            var pair = new AnimalCollisionResultPair();
+
+            var self = new AnimalCollisionResult();
+            self.Ate = true;
+            pair.Self = self;
+
+            var other = new AnimalCollisionResult();
+            other.IsDead = true;
+            pair.Other = other;
+
+            return pair;
         }
     }
 }

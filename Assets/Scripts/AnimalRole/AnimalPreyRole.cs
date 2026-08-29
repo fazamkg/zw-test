@@ -2,19 +2,39 @@ namespace Game
 {
     public class AnimalPreyRole : AnimalRole
     {
-        public override void OnCollision(AnimalRole other)
+        public override AnimalCollisionResultPair OnCollision(AnimalRole other)
         {
-            other.CollideWithPrey(this);
+            return other.CollideWithPrey(this);
         }
 
-        public override void CollideWithPredator(AnimalPredatorRole predator)
+        public override AnimalCollisionResultPair CollideWithPredator(AnimalPredatorRole predator)
         {
-            // become dead and disappear from screen
+            var pair = new AnimalCollisionResultPair();
+
+            var self = new AnimalCollisionResult();
+            self.IsDead = true;
+            pair.Self = self;
+
+            var other = new AnimalCollisionResult();
+            other.Ate = true;
+            pair.Other = other;
+
+            return pair;
         }
 
-        public override void CollideWithPrey(AnimalPreyRole prey)
+        public override AnimalCollisionResultPair CollideWithPrey(AnimalPreyRole prey)
         {
-            // fly apart by physics
+            var pair = new AnimalCollisionResultPair();
+
+            var self = new AnimalCollisionResult();
+            self.ReflectDirection = true;
+            pair.Self = self;
+
+            var other = new AnimalCollisionResult();
+            other.ReflectDirection = true;
+            pair.Other = other;
+
+            return pair;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Game
 
         public Collider Collider => _collider;
         public AnimalRole AnimalRole { get; private set; }
+        public bool IsDead { get; private set; }
 
         public void Init(AnimalConfig animalConfig)
         {
@@ -33,29 +34,74 @@ namespace Game
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (IsDead) return;
+
             var collider = collision.collider;
             if (collider == null) return;
 
             var otherAnimal = collider.GetComponent<Animal>();
             if (otherAnimal == null)
             {
-                for (var i = 0; i < collision.contactCount; i++)
-                {
-                    var contact = collision.GetContact(i);
-                    if (contact.normal == Vector3.up)
-                    {
-                        continue;
-                    }
-
-                    _direction = Vector3.Reflect(_direction, contact.normal);
-                    return;
-                }
+                var normal = GetCollisionNormal(collision);
+                ReflectDirection(normal);
                 return;
             }
 
             var otherRole = otherAnimal.AnimalRole;
+            if (otherRole == null) return;
+            if (AnimalRole == null) return;
 
-            AnimalRole.OnCollision(otherRole);
+            var result = otherRole.OnCollision(AnimalRole);
+
+            if (result.Self.ReflectDirection)
+            {
+                var normal = GetCollisionNormal(collision);
+                ReflectDirection(normal);
+            }
+
+            if (result.Other.ReflectDirection)
+            {
+                var normal = GetCollisionNormal(collision);
+                otherAnimal.ReflectDirection(-normal);
+            }
+
+            if (result.Self.IsDead)
+            {
+                Die();
+            }
+
+            if (result.Other.IsDead)
+            {
+                otherAnimal.Die();
+            }
         }
-    } 
+
+        private void Die()
+        {
+            gameObject.SetActive(false);
+            IsDead = true;
+        }
+
+        private Vector3 GetCollisionNormal(Collision collision)
+        {
+            for (var i = 0; i < collision.contactCount; i++)
+            {
+                var contact = collision.GetContact(i);
+                if (contact.normal == Vector3.up)
+                {
+                    continue;
+                }
+                return contact.normal;
+            }
+
+            return Vector3.zero;
+        }
+
+        private void ReflectDirection(Vector3 normal)
+        {
+            if (normal == Vector3.zero) return;
+
+            _direction = Vector3.Reflect(_direction, normal);
+        }
+    }
 }
