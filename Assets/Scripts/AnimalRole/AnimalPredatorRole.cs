@@ -1,13 +1,13 @@
+using System;
+using UnityEngine;
+
 namespace Game
 {
+    [Serializable]
     public class AnimalPredatorRole : AnimalRole
     {
+        [SerializeReference, SubclassSelector]
         private PredatorPredatorResolveBehaviour _predatorPredatorResolveBehaviour;
-
-        public void InjectPredatorPredatorResolveBehaviour(PredatorPredatorResolveBehaviour behaviour)
-        {
-            _predatorPredatorResolveBehaviour = behaviour;
-        }
 
         public override AnimalCollisionResultPair OnCollision(AnimalRole other)
         {

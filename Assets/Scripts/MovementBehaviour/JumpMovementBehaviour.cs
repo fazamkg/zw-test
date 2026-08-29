@@ -10,16 +10,14 @@ namespace Game
         [SerializeField] private float _jumpStrength = 2f;
         [SerializeField] private float _jumpAngle = 45f;
 
-        private float _timePassedSeconds;
-
-        public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody)
+        public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody, ref float timer)
         {
             direction = direction.normalized;
 
-            _timePassedSeconds += delta;
-            if (_timePassedSeconds > _jumpIntervalSeconds)
+            timer += delta;
+            if (timer > _jumpIntervalSeconds)
             {
-                _timePassedSeconds = 0f;
+                timer = 0f;
 
                 var rotateAxis = Vector3.Cross(direction, Vector3.up);
 

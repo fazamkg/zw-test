@@ -16,6 +16,7 @@ namespace Game
 
         private AnimalConfig _animalConfig;
         private Vector3 _direction;
+        private float _timer;
 
         public Collider Collider => _collider;
         public AnimalRole AnimalRole { get; private set; }
@@ -24,7 +25,6 @@ namespace Game
         public void Init(AnimalConfig animalConfig)
         {
             _animalConfig = animalConfig;
-            _animalConfig.AnimalRoleProvider.Init();
 
             _direction = Helper.GetRandomDirectionHorizontal();
         }
@@ -36,7 +36,7 @@ namespace Game
 
         private void FixedUpdate()
         {
-            _animalConfig.MovementBehaviour.Tick(Time.fixedDeltaTime, _direction, _rigidbody);
+            _animalConfig.MovementBehaviour.Tick(Time.fixedDeltaTime, _direction, _rigidbody, ref _timer);
         }
 
         private void OnCollisionEnter(Collision collision)

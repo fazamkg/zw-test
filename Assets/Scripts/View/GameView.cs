@@ -34,9 +34,9 @@ namespace Game
         private void UpdateView()
         {
             _deadPredatorAmountText.text = _gameState.DeadAmount
-                .GetValueOrDefault(typeof(AnimalPreyRole), 0).ToString();
-            _deadPreyAmountText.text = _gameState.DeadAmount
                 .GetValueOrDefault(typeof(AnimalPredatorRole), 0).ToString();
+            _deadPreyAmountText.text = _gameState.DeadAmount
+                .GetValueOrDefault(typeof(AnimalPreyRole), 0).ToString();
         }
     } 
 }

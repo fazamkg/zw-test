@@ -14,20 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.AnimalConfig
   _name: Snake
   _animalRoleProvider:
-    rid: 7446921453224067338
+    rid: 7446921453224067360
   _movementBehaviour:
     rid: 7446921453224067356
   references:
     version: 2
     RefIds:
-    - rid: 7446921453224067338
-      type: {class: AnimalPredatorRoleProvider, ns: Game, asm: Assembly-CSharp}
-      data:
-        _predatorPredatorResolveBehaviour:
-          rid: 7446921453224067347
-    - rid: 7446921453224067347
-      type: {class: RandomSurvivorBehaviour, ns: Game, asm: Assembly-CSharp}
-      data: 
     - rid: 7446921453224067356
       type: {class: LinearMovementBehaviour, ns: Game, asm: Assembly-CSharp}
+      data:
+        _speed: 3
+    - rid: 7446921453224067360
+      type: {class: AnimalStaticRoleProvider, ns: Game, asm: Assembly-CSharp}
+      data:
+        _animalRole:
+          rid: 7446921453224067361
+    - rid: 7446921453224067361
+      type: {class: AnimalPredatorRole, ns: Game, asm: Assembly-CSharp}
+      data:
+        _predatorPredatorResolveBehaviour:
+          rid: 7446921453224067362
+    - rid: 7446921453224067362
+      type: {class: RandomSurvivorBehaviour, ns: Game, asm: Assembly-CSharp}
       data: 

@@ -1,5 +1,8 @@
+using System;
+
 namespace Game
 {
+    [Serializable]
     public class AnimalPreyRole : AnimalRole
     {
         public override AnimalCollisionResultPair OnCollision(AnimalRole other)
