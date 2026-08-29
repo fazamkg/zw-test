@@ -19,6 +19,8 @@ namespace Game
 
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            if (arg0.name != Consts.MAIN_SCENE_NAME) return;
+
             var map = FindFirstObjectByType<Map>(FindObjectsInactive.Exclude);
 
             var gameState = new GameState();
@@ -26,7 +28,7 @@ namespace Game
             _animalFactory = new AnimalFactory(gameState, map, _gameConfig);
 
             var gameView = Instantiate(_gameConfig.GameView);
-            gameView.Init(gameState);
+            gameView.Init(gameState, map.Camera);
         }
 
         private void Update()

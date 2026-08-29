@@ -1,11 +1,15 @@
 using UnityEngine;
-using System;
 
 namespace Game
 {
+    public delegate void DeathEvent(Animal dead);
+    public delegate void AteEvent(Animal eater);
+
+    [SelectionBase]
     public class Animal : MonoBehaviour
     {
-        public event Action<Animal> OnDeath;
+        public event DeathEvent OnDeath;
+        public event AteEvent OnAte;
 
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Collider _collider;
@@ -76,6 +80,16 @@ namespace Game
             if (result.Other.IsDead)
             {
                 otherAnimal.Die();
+            }
+
+            if (result.Self.Ate)
+            {
+                OnAte?.Invoke(this);
+            }
+
+            if (result.Other.Ate)
+            {
+                otherAnimal.OnAte?.Invoke(otherAnimal);
             }
         }
 

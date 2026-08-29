@@ -510,6 +510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.GameView
   _deadPreyAmountText: {fileID: 1743670875039569983}
   _deadPredatorAmountText: {fileID: 8727766630345719348}
+  _tastyTextViewPrefab: {fileID: 6582141514070424286, guid: 8d7aa8973013dcd4eb8dc50cff8dc6e6, type: 3}
+  _tastyTextOffset: {x: 0, y: -30, z: 0}
 --- !u!1 &2883081549015685841
 GameObject:
   m_ObjectHideFlags: 0

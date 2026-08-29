@@ -6265,6 +6265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817e87eb5ccd8f24e9b5cec812d3cf15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Map
+  _camera: {fileID: 330585545}
   _spawnArea: {fileID: 1541307776}
 --- !u!1 &1645600407
 GameObject:
