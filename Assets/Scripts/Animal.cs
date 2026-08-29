@@ -1,9 +1,12 @@
 using UnityEngine;
+using System;
 
 namespace Game
 {
     public class Animal : MonoBehaviour
     {
+        public event Action<Animal> OnDeath;
+
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Collider _collider;
 
@@ -80,6 +83,7 @@ namespace Game
         {
             gameObject.SetActive(false);
             IsDead = true;
+            OnDeath?.Invoke(this);
         }
 
         private Vector3 GetCollisionNormal(Collision collision)

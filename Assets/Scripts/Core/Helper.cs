@@ -5,6 +5,18 @@ namespace Game
 {
     public static class Helper
     {
+        public static void Bump<T>(this Dictionary<T, int> dictionary, T key)
+        {
+            dictionary.TryAdd(key, 0);
+            dictionary[key]++;
+        }
+
+        public static T GetValueOrDefault<T, T2>(this Dictionary<T2, T> dictionary, T2 key, T defaultValue)
+        {
+            var exist = dictionary.TryGetValue(key, out var value);
+            return exist ? value : defaultValue;
+        }
+
         public static Vector3 GetRandomDirectionHorizontal()
         {
             Vector3 direction = Random.onUnitCircle;

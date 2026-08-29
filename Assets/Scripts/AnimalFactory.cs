@@ -5,12 +5,12 @@ namespace Game
         private Map _map;
         private GameConfig _gameConfig;
 
-        public AnimalFactory(Map map, GameConfig gameConfig)
+        public AnimalFactory(GameState gameState, Map map, GameConfig gameConfig)
         {
             _map = map;
             _gameConfig = gameConfig;
 
-            _gameConfig.AnimalSpawnBehaviour.OnInit(_map, _gameConfig.AnimalPrefab);
+            _gameConfig.AnimalSpawnBehaviour.OnInit(gameState, _map, _gameConfig.AnimalPrefab);
         }
 
         public void Tick(float delta)

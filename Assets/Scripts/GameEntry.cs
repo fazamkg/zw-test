@@ -21,7 +21,12 @@ namespace Game
         {
             var map = FindFirstObjectByType<Map>(FindObjectsInactive.Exclude);
 
-            _animalFactory = new AnimalFactory(map, _gameConfig);
+            var gameState = new GameState();
+
+            _animalFactory = new AnimalFactory(gameState, map, _gameConfig);
+
+            var gameView = Instantiate(_gameConfig.GameView);
+            gameView.Init(gameState);
         }
 
         private void Update()

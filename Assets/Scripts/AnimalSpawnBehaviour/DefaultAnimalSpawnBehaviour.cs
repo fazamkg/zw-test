@@ -16,15 +16,17 @@ namespace Game
 
         private float _currentTimeSeconds;
         private float _currentIntervalSeconds;
+        private GameState _gameState;
         private Map _map;
         private Animal _animalPrefab;
         private List<Vector3> _candidatesBuffer = new List<Vector3>();
 
-        public override void OnInit(Map map, Animal animalPrefab)
+        public override void OnInit(GameState gameState, Map map, Animal animalPrefab)
         {
-            SetNewInterval();
+            _gameState = gameState;
             _map = map;
             _animalPrefab = animalPrefab;
+            SetNewInterval();
         }
 
         public override void Tick(float delta)
@@ -62,6 +64,8 @@ namespace Game
                 _candidatesBuffer);
 
             animalInstance.transform.position = position;
+
+            _gameState.OnAnimalSpawn(animalInstance);
         }
     } 
 }

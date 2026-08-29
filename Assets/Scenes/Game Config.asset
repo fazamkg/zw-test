@@ -15,6 +15,7 @@ MonoBehaviour:
   _animalSpawnBehaviour:
     rid: 7446921453224067354
   _animalPrefab: {fileID: 954605112954856223, guid: 60f2b06163fe63c4584147a30faa6bef, type: 3}
+  _gameView: {fileID: 6577497343944655945, guid: 6dd360274d5ddb242a04101bc726edbe, type: 3}
   references:
     version: 2
     RefIds:
