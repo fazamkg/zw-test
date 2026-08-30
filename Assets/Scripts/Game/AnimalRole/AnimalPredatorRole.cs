@@ -9,6 +9,11 @@ namespace Game
         [SerializeReference, SubclassSelector]
         private PredatorPredatorResolveBehaviour _predatorPredatorResolveBehaviour = new RandomSurvivorBehaviour();
 
+        public void SetPredatorPredatorBehavioir(PredatorPredatorResolveBehaviour behaviour)
+        {
+            _predatorPredatorResolveBehaviour = behaviour;
+        }
+
         public override void OnCollision(AnimalRole roleA, AnimalCollisionContext context)
         {
             roleA.CollideWithPredator(this, context);

@@ -5,7 +5,7 @@ namespace Game
     [Serializable]
     public class AlwaysLeftSurvivorBehaviour : PredatorPredatorResolveBehaviour
     {
-        public override Animal Resolve(Animal animalA, Animal animalB)
+        public override IAnimal Resolve(IAnimal animalA, IAnimal animalB)
         {
             return animalA;
         }

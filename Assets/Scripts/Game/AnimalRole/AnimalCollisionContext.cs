@@ -4,8 +4,8 @@ namespace Game
 {
     public struct AnimalCollisionContext
     {
-        public Animal animalA;
-        public Animal animalB;
+        public IAnimal animalA;
+        public IAnimal animalB;
         public Vector3 normal;
     }
 }

@@ -7,7 +7,7 @@ namespace Game
     public delegate void AteEvent(Animal eater);
 
     [SelectionBase]
-    public class Animal : MonoBehaviour, IPoolable
+    public class Animal : MonoBehaviour, IPoolable, IAnimal
     {
         public event DeathEvent OnDeath;
         public event AteEvent OnAte;
