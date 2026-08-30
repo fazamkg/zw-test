@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using VContainer;
 
 namespace Game
 {
@@ -14,9 +15,10 @@ namespace Game
         private Camera _camera;
         private ObjectPool<TastyTextView> _tastyTextPool;
 
-        public void Init(GameState gameState, Camera camera)
+        [Inject]
+        public void Init(GameState gameState, Map map)
         {
-            _camera = camera;
+            _camera = map.Camera;
             _gameState = gameState;
             _tastyTextPool = new ObjectPool<TastyTextView>(_tastyTextViewPrefab);
 
