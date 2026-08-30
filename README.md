@@ -1,6 +1,6 @@
 # Zoo World
 
-Please boot the game from Init scene
+Please boot the game from Entry scene
 
 ## Requirements
 
