@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
-using Object = UnityEngine.Object;
 
 namespace Game
 {

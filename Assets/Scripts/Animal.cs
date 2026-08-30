@@ -16,7 +16,8 @@ namespace Game
 
         private AnimalConfig _animalConfig;
         private Vector3 _direction;
-        private float _timer;
+        private float _movementTimer;
+        private float _roleTimer;
         private IObjectPool _pool;
 
         public Collider Collider => _collider;
@@ -33,13 +34,13 @@ namespace Game
         private void Update()
         {
             var delta = Time.deltaTime;
-            AnimalRole = _animalConfig.AnimalRoleProvider.Tick(delta);
+            AnimalRole = _animalConfig.AnimalRoleProvider.Tick(delta, this, ref _roleTimer);
             LifetimeSeconds += delta;
         }
 
         private void FixedUpdate()
         {
-            _animalConfig.MovementBehaviour.Tick(Time.fixedDeltaTime, _direction, _rigidbody, ref _timer);
+            _animalConfig.MovementBehaviour.Tick(Time.fixedDeltaTime, _direction, _rigidbody, ref _movementTimer);
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -79,7 +80,7 @@ namespace Game
         {
             gameObject.SetActive(true);
             _direction = Vector3.zero;
-            _timer = 0f;
+            _movementTimer = 0f;
             IsDead = false;
             _rigidbody.linearVelocity = Vector3.zero;
             OnDeath = null;

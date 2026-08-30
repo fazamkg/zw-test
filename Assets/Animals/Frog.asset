@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.AnimalConfig
   _name: Frog
   _animalRoleProvider:
-    rid: 7446921453224067358
+    rid: 7446921473776681201
   _movementBehaviour:
     rid: 7446921453224067355
   references:
@@ -26,11 +26,11 @@ MonoBehaviour:
         _jumpIntervalSeconds: 2
         _jumpStrength: 3
         _jumpAngle: 45
-    - rid: 7446921453224067358
+    - rid: 7446921473776681201
       type: {class: AnimalStaticRoleProvider, ns: Game, asm: Assembly-CSharp}
       data:
         _animalRole:
-          rid: 7446921453224067359
-    - rid: 7446921453224067359
+          rid: 7446921473776681202
+    - rid: 7446921473776681202
       type: {class: AnimalPreyRole, ns: Game, asm: Assembly-CSharp}
       data: 

@@ -8,7 +8,7 @@ namespace Game
     {
         [SerializeReference, SubclassSelector] private AnimalRole _animalRole;
 
-        public override AnimalRole Tick(float delta)
+        public override AnimalRole Tick(float delta, Animal animal, ref float timer)
         {
             return _animalRole;
         }
