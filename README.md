@@ -51,7 +51,7 @@ We have a MonoBehaviour for an animal called `Animal`. This class works as a she
 
 The definition of the animal type is carried by `AnimalConfig` ScriptableObject class. This is the data-only class and does not have runtime state.   
 
-The role of animal and role's rules are defined in classes inherited from abstract class `AnimalRole`. These classes follow Visitor pattern - I assume there aren't going to many roles but all possible interactions must be filled out so it should fit.   
+The role of animal and role's rules are defined in classes inherited from abstract class `AnimalRole`. These classes follow Visitor pattern - I assume there aren't going to many roles but all possible interactions must be filled out so it should fit. Basically I assume we won't have 1000 roles, but i still expect 1000 animals :)   
 
 Possible movement types are defined by classes inherited from `MovementBehaviour`. This is strategy pattern. Pretty easy to scale if new movement types are needed -> just add new class and inherit it from `MovementBehaviour`.   
 

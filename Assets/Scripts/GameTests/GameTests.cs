@@ -112,5 +112,39 @@ namespace GameTests
             Assert.AreEqual(Vector3.forward, animalA.Direction);
             Assert.AreEqual(Vector3.back, animalB.Direction);
         }
+
+        [Test]
+        public void AnimalRole_Collision_PredatorPredator_RandomSurvivor()
+        {
+            var animalA = new AnimalMock();
+            var animalB = new AnimalMock(Vector3.back);
+
+            var roleA = new AnimalPredatorRole();
+            var roleB = new AnimalPredatorRole();
+            roleA.SetPredatorPredatorBehaviour(new RandomSurvivorBehaviour());
+            roleB.SetPredatorPredatorBehaviour(new RandomSurvivorBehaviour());
+
+            Assert.IsFalse(animalA.IsDead);
+            Assert.IsFalse(animalB.IsDead);
+
+            Assert.IsFalse(animalA.DidEat);
+            Assert.IsFalse(animalB.DidEat);
+
+            Assert.AreEqual(Vector3.forward, animalA.Direction);
+            Assert.AreEqual(Vector3.back, animalB.Direction);
+
+            var context = new AnimalCollisionContext();
+            context.animalA = animalA;
+            context.animalB = animalB;
+            context.normal = Vector3.back;
+
+            roleB.OnCollision(roleA, context);
+
+            Assert.IsTrue(animalA.IsDead != animalB.IsDead);
+            Assert.IsTrue(animalA.DidEat != animalB.DidEat);
+
+            Assert.AreEqual(Vector3.forward, animalA.Direction);
+            Assert.AreEqual(Vector3.back, animalB.Direction);
+        }
     } 
 }
