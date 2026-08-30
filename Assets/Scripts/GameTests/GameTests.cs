@@ -84,8 +84,8 @@ namespace GameTests
 
             var roleA = new AnimalPredatorRole();
             var roleB = new AnimalPredatorRole();
-            roleA.SetPredatorPredatorBehavioir(new AlwaysLeftSurvivorBehaviour());
-            roleB.SetPredatorPredatorBehavioir(new AlwaysLeftSurvivorBehaviour());
+            roleA.SetPredatorPredatorBehaviour(new AlwaysLeftSurvivorBehaviour());
+            roleB.SetPredatorPredatorBehaviour(new AlwaysLeftSurvivorBehaviour());
 
             Assert.IsFalse(animalA.IsDead);
             Assert.IsFalse(animalB.IsDead);

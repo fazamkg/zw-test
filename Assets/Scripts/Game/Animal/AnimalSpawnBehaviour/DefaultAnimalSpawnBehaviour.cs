@@ -22,7 +22,7 @@ namespace Game
 
             if (_animalPool.Length == 0)
             {
-                throw new Exception($"Animal Poll was empty on {nameof(DefaultAnimalSpawnBehaviour)}");
+                throw new Exception($"Animal Pool was empty on {nameof(DefaultAnimalSpawnBehaviour)}");
             }
 
             if (Mathf.Approximately(0f, _mapSpacingCheck) || _mapSpacingCheck < 0f)

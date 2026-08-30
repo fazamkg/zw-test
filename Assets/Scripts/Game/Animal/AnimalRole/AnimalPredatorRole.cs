@@ -13,12 +13,12 @@ namespace Game
         {
             if (_predatorPredatorResolveBehaviour == null)
             {
-                throw new Exception($"Predator-preadator resolve behaviour was null." +
+                throw new Exception($"Predator-predator resolve behaviour was null." +
                     $" Please fill in");
             }
         }
 
-        public void SetPredatorPredatorBehavioir(PredatorPredatorResolveBehaviour behaviour)
+        public void SetPredatorPredatorBehaviour(PredatorPredatorResolveBehaviour behaviour)
         {
             _predatorPredatorResolveBehaviour = behaviour;
         }

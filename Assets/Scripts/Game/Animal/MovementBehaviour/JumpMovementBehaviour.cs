@@ -19,7 +19,7 @@ namespace Game
 
             if (_jumpStrength < 0f)
             {
-                throw new Exception("Jump strength should be position for JumpMovementBehaviour");
+                throw new Exception("Jump strength should be positive for JumpMovementBehaviour");
             }
         }
 
