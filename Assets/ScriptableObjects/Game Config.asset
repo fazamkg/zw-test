@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Game Config
   m_EditorClassIdentifier: Assembly-CSharp::Game.GameConfig
   _animalSpawnBehaviour:
-    rid: 7446921453224067354
+    rid: 7446921473776681214
   _animalPrefab: {fileID: 954605112954856223, guid: 60f2b06163fe63c4584147a30faa6bef, type: 3}
   _gameViewPrefab: {fileID: 6577497343944655945, guid: 6dd360274d5ddb242a04101bc726edbe, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 7446921453224067354
-      type: {class: DefaultAnimalSpawnBehaviour, ns: Game, asm: Assembly-CSharp}
+    - rid: 7446921473776681214
+      type: {class: DefaultAnimalSpawnBehaviour, ns: Game, asm: Game}
       data:
         _minSpawnIntervalSeconds: 1
         _maxSpawnIntervalSeconds: 2
