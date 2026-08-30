@@ -12,11 +12,13 @@ namespace Game
 
         private GameState _gameState;
         private Camera _camera;
+        private ObjectPool<TastyTextView> _tastyTextPool;
 
         public void Init(GameState gameState, Camera camera)
         {
             _camera = camera;
             _gameState = gameState;
+            _tastyTextPool = new ObjectPool<TastyTextView>(_tastyTextViewPrefab);
 
             gameState.OnDeadAmountUpdated += UpdateView;
 
@@ -27,7 +29,8 @@ namespace Game
 
         private void GameState_OnSomeoneAte(Animal eater)
         {
-            var instance = Instantiate(_tastyTextViewPrefab, transform); // todo: object pool
+            var instance = _tastyTextPool.Get();
+            instance.transform.SetParent(transform);
             instance.transform.position = _camera.WorldToScreenPoint(eater.transform.position) + _tastyTextOffset;
         }
 

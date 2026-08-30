@@ -43,12 +43,11 @@ namespace Game
 
             var animalConfig = _animalPool.GetRandom();
 
-            // todo: object pool
-            var animalInstance = Object.Instantiate(input.animalPrefab);
+            var animalInstance = input.animalPool.Get();
             animalInstance.Init(animalConfig);
 
             var position = Helper.SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(spawnArea,
-                animalInstance.Collider,
+                animalInstance.Collider, 
                 _mapSpacingCheck,
                 input.candidatesBuffer);
 

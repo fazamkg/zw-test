@@ -6,7 +6,7 @@ namespace Game
     public delegate void AteEvent(Animal eater);
 
     [SelectionBase]
-    public class Animal : MonoBehaviour
+    public class Animal : MonoBehaviour, IPoolable
     {
         public event DeathEvent OnDeath;
         public event AteEvent OnAte;
@@ -17,6 +17,7 @@ namespace Game
         private AnimalConfig _animalConfig;
         private Vector3 _direction;
         private float _timer;
+        private IObjectPool _pool;
 
         public Collider Collider => _collider;
         public AnimalRole AnimalRole { get; private set; }
@@ -25,7 +26,6 @@ namespace Game
         public void Init(AnimalConfig animalConfig)
         {
             _animalConfig = animalConfig;
-
             _direction = Helper.GetRandomDirectionHorizontal();
         }
 
@@ -57,6 +57,8 @@ namespace Game
             var otherRole = otherAnimal.AnimalRole;
             if (otherRole == null) return;
             if (AnimalRole == null) return;
+
+            if (GetInstanceID() > otherAnimal.GetInstanceID()) return;
 
             var result = otherRole.OnCollision(AnimalRole);
 
@@ -93,11 +95,32 @@ namespace Game
             }
         }
 
-        private void Die()
+        public void OnCreateFromPool(IObjectPool pool)
+        {
+            _pool = pool;
+        }
+
+        public void OnPopFromPool()
+        {
+            gameObject.SetActive(true);
+            _direction = Vector3.zero;
+            _timer = 0f;
+            IsDead = false;
+            _rigidbody.linearVelocity = Vector3.zero;
+            OnDeath = null;
+            OnAte = null;
+        }
+
+        public void OnReturnToPool()
         {
             gameObject.SetActive(false);
             IsDead = true;
             OnDeath?.Invoke(this);
+        }
+
+        private void Die()
+        {
+            _pool.ReturnToPool(this);
         }
 
         private Vector3 GetCollisionNormal(Collision collision)

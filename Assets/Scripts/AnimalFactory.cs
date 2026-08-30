@@ -14,8 +14,8 @@ namespace Game
             _spawnInput = new AnimalSpawnState();
             _spawnInput.gameState = gameState;
             _spawnInput.map = map;
-            _spawnInput.animalPrefab = _gameConfig.AnimalPrefab;
             _spawnInput.candidatesBuffer = new();
+            _spawnInput.animalPool = new ObjectPool<Animal>(_gameConfig.AnimalPrefab);
 
             _gameConfig.AnimalSpawnBehaviour.OnInit(_spawnInput);
         }

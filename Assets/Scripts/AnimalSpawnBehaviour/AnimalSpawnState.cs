@@ -10,7 +10,7 @@ namespace Game
         public float currentIntervalSeconds;
         public Map map;
         public GameState gameState;
-        public Animal animalPrefab;
         public List<Vector3> candidatesBuffer;
+        public ObjectPool<Animal> animalPool;
     }
 }
