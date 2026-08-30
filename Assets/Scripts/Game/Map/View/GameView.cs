@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using VContainer;
 using Core;
+using System;
 
 namespace Game
 {
@@ -15,6 +16,29 @@ namespace Game
         private GameState _gameState;
         private Camera _camera;
         private ObjectPool<TastyTextView> _tastyTextPool;
+
+        public void Validate()
+        {
+            if (_deadPredatorAmountText == null)
+            {
+                throw new Exception("Dead prey amount text was null on GameView prefab." +
+                    " Please fill in the reference");
+            }
+
+            if (_deadPredatorAmountText == null)
+            {
+                throw new Exception("Dead predator amount text was null on GameView prefab." +
+                    " Please fill in the reference");
+            }
+
+            if (_tastyTextViewPrefab == null)
+            {
+                throw new Exception("Tasty text view prefab was null on GameView prefab." +
+                    " Please fill in the reference");
+            }
+
+            _tastyTextViewPrefab.Validate();
+        }
 
         [Inject]
         public void Init(GameState gameState, Map map)

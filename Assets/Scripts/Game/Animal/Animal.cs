@@ -1,5 +1,6 @@
 using UnityEngine;
 using Core;
+using System;
 
 namespace Game
 {
@@ -27,6 +28,19 @@ namespace Game
         public AnimalRole AnimalRole { get; private set; }
         public bool IsDead { get; private set; }
         public float LifetimeSeconds { get; private set; }
+
+        public void Validate()
+        {
+            if (_rigidbody == null)
+            {
+                throw new Exception($"Rigidbody was null on Animal Prefab. Please fill in the reference");
+            }
+
+            if (_collider == null)
+            {
+                throw new Exception($"Collider was null on Animal Prefab. Please fill in the reference");
+            }
+        }
 
         public void Init(AnimalConfig animalConfig, ObjectPool<AnimalVisual> visualPool)
         {

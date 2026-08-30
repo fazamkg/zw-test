@@ -5,6 +5,11 @@ namespace Game
     [Serializable]
     public class AnimalPreyRole : AnimalRole
     {
+        public override void Validate()
+        {
+            // nothing to validate here
+        }
+
         public override void OnCollision(AnimalRole roleA, AnimalCollisionContext context)
         {
             roleA.CollideWithPrey(this, context);

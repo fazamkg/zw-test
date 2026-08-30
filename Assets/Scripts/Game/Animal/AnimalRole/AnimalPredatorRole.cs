@@ -9,6 +9,15 @@ namespace Game
         [SerializeReference, SubclassSelector]
         private PredatorPredatorResolveBehaviour _predatorPredatorResolveBehaviour = new RandomSurvivorBehaviour();
 
+        public override void Validate()
+        {
+            if (_predatorPredatorResolveBehaviour == null)
+            {
+                throw new Exception($"Predator-preadator resolve behaviour was null." +
+                    $" Please fill in");
+            }
+        }
+
         public void SetPredatorPredatorBehavioir(PredatorPredatorResolveBehaviour behaviour)
         {
             _predatorPredatorResolveBehaviour = behaviour;

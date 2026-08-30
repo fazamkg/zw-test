@@ -20,5 +20,7 @@ namespace Game
         public abstract void CollideWithPrey(AnimalPreyRole roleB, AnimalCollisionContext context);
 
         public abstract void CollideWithPredator(AnimalPredatorRole roleB, AnimalCollisionContext context);
+
+        public abstract void Validate();
     } 
 }

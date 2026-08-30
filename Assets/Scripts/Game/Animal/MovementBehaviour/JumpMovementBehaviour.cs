@@ -10,6 +10,19 @@ namespace Game
         [SerializeField] private float _jumpStrength = 2f;
         [SerializeField] private float _jumpAngle = 45f;
 
+        public override void Validate()
+        {
+            if (_jumpIntervalSeconds < 0f)
+            {
+                throw new Exception("Jump interval seconds should be positive for JumpMovementBehaviour");
+            }
+
+            if (_jumpStrength < 0f)
+            {
+                throw new Exception("Jump strength should be position for JumpMovementBehaviour");
+            }
+        }
+
         public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody, ref float timer)
         {
             direction = direction.normalized;

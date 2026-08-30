@@ -8,6 +8,11 @@ namespace Game
     {
         [SerializeField] private float _speed = 3f;
 
+        public override void Validate()
+        {
+            // nothing to validate
+        }
+
         public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody, ref float timer)
         {
             var originalVelocity = rigidbody.linearVelocity;

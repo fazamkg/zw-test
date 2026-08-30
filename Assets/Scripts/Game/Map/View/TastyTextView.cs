@@ -1,5 +1,6 @@
 using UnityEngine;
 using Core;
+using System;
 
 namespace Game
 {
@@ -10,6 +11,15 @@ namespace Game
         [SerializeField] private float _fadeSpeed = 1f;
 
         private IObjectPool _pool;
+
+        public void Validate()
+        {
+            if (_canvasGroup == null)
+            {
+                throw new Exception("Canvas group was null on TastyTextView prefab." +
+                    " Please fill in the reference");
+            }
+        }
 
         private void Update()
         {

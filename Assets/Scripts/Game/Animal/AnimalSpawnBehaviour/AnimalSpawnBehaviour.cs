@@ -8,5 +8,7 @@ namespace Game
         public abstract void OnInit(AnimalSpawnState input);
 
         public abstract void Tick(AnimalSpawnState input);
+
+        public abstract void Validate();
     } 
 }

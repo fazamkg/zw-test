@@ -13,6 +13,30 @@ namespace Game
         [SerializeField] private AnimalConfig[] _animalPool;
         [SerializeField] private float _mapSpacingCheck = 1f;
 
+        public override void Validate()
+        {
+            if (_animalPool == null)
+            {
+                throw new Exception($"Animal Pool was null on {nameof(DefaultAnimalSpawnBehaviour)}");
+            }
+
+            if (_animalPool.Length == 0)
+            {
+                throw new Exception($"Animal Poll was empty on {nameof(DefaultAnimalSpawnBehaviour)}");
+            }
+
+            if (Mathf.Approximately(0f, _mapSpacingCheck) || _mapSpacingCheck < 0f)
+            {
+                throw new Exception($"Set map spacing check to more than 0");
+            }
+
+            for (var i = 0; i < _animalPool.Length; i++)
+            {
+                var animalConfig = _animalPool[i];
+                animalConfig.Validate();
+            }
+        }
+
         public override void OnInit(AnimalSpawnState input)
         {
             SetNewInterval(input);

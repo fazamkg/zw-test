@@ -1,5 +1,6 @@
 using UnityEngine;
 using Core;
+using System;
 
 namespace Game
 {
@@ -17,5 +18,30 @@ namespace Game
         public AnimalVisual AnimalVisual => _animalVisual;
         public AnimalRoleProvider AnimalRoleProvider => _animalRoleProvider;
         public MovementBehaviour MovementBehaviour => _movementBehaviour;
+
+        public void Validate()
+        {
+            if (_animalVisual == null)
+            {
+                throw new Exception($"Animal visual prefab reference was null on AnimalConfig {name}." +
+                    $" Please fill in the reference");
+            }
+
+            if (_animalRoleProvider == null)
+            {
+                throw new Exception($"Animal role provider was null on AnimalConfig {name}." +
+                    $" Please select the role provider");
+            }
+
+            if (_movementBehaviour == null)
+            {
+                throw new Exception($"Movement behaviour was null on AnimalConfig {name}." +
+                    $" Please select movement behaviour");
+            }
+
+            _animalRoleProvider.Validate();
+
+            _movementBehaviour.Validate();
+        }
     } 
 }

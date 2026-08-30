@@ -14,6 +14,17 @@ namespace Game
         private AnimalPreyRole _prey = new();
         private AnimalPredatorRole _predator = new();
 
+        public override void Validate()
+        {
+            if (_startFrom == null)
+            {
+                throw new Exception($"Animal Morph Role Provider has null Start From field." +
+                    " Please fill in.");
+            }
+
+            _startFrom.Validate();
+        }
+
         public override AnimalRole Tick(float delta, Animal animal, ref float timer)
         {
             timer += delta;
