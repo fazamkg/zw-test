@@ -28,3 +28,29 @@ Every 1-2 seconds 1 animal appear and starts moving randomly. Animal can collide
 
 ### UI
 Top right corner has counters displaying how many prey and predators are dead this session
+
+## How to add new animal type
+
+1. Right Click in Project window -> Create -> Game -> Animal Config
+2. This creates a scriptable object for new animal type
+3. Rename it to something like "Dog"
+4. Set the name inside of it to "Dog" aswell (currently has no effect to anything)
+5. Drag `AnimalVisual` prefab to `Animal Visual` field. This selects how animal will look like
+6. Select `Animal Role Provider`. This influences how Role of Animal can change. If you want just select one role for animal, select `Animal Static Role Provider`
+7. Select `Animal Role` (for example `Animal Prey Role`)
+8. Select `Movement Behaviour`. Selected behaviour will have additional settings.
+9. Done! You have new animal type
+10. If you want new animal type to appear in game, select `Assets/ScriptableObjects/Game Config.asset`
+11. And add your new animal type to `Animal Pool` field
+
+## Architecture
+
+We have a MonoBehaviour for an animal called `Animal`. This class works as a shell for any possible animal out there.   
+
+The definition of the animal type is carried by `AnimalConfig` ScriptableObject class. This is the data-only class and does not have runtime state.   
+
+The role of animal and role's rules are defined in classes inherited from abstract class `AnimalRole`. These classes follow Visitor pattern - I assume there aren't going to many roles but all possible interactions must be filled out so it should fit.   
+
+Possible movement types are defined by classes inherited from `MovementBehaviour`. This is strategy pattern. Pretty easy to scale if new movement types are needed -> just add new class and inherit it from `MovementBehaviour`.   
+
+I use a package called SerializeReference from MackySoft, which allows those strategies on `AnimalConfig` to be serialized and selected in inspector for designer-friendly solution.
