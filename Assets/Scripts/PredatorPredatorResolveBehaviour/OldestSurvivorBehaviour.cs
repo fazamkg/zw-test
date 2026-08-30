@@ -1,4 +1,3 @@
-using UnityEngine;
 using System;
 
 namespace Game
@@ -6,9 +5,9 @@ namespace Game
     [Serializable]
     public class OldestSurvivorBehaviour : PredatorPredatorResolveBehaviour
     {
-        public override AnimalPredatorRole Resolve(AnimalPredatorRole self, AnimalPredatorRole other)
+        public override Animal Resolve(Animal animalA, Animal animalB)
         {
-            return null; // todo
+            return animalA.LifetimeSeconds > animalB.LifetimeSeconds ? animalA : animalB;
         }
     }
 }

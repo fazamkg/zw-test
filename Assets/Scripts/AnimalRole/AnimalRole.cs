@@ -5,10 +5,10 @@ namespace Game
     [Serializable]
     public abstract class AnimalRole
     {
-        public abstract AnimalCollisionResultPair OnCollision(AnimalRole other);
+        public abstract void OnCollision(AnimalRole roleA, AnimalCollisionContext context);
 
-        public abstract AnimalCollisionResultPair CollideWithPrey(AnimalPreyRole prey);
+        public abstract void CollideWithPrey(AnimalPreyRole roleB, AnimalCollisionContext context);
 
-        public abstract AnimalCollisionResultPair CollideWithPredator(AnimalPredatorRole predator);
+        public abstract void CollideWithPredator(AnimalPredatorRole roleB, AnimalCollisionContext context);
     } 
 }

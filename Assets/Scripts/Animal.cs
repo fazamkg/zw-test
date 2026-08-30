@@ -22,6 +22,7 @@ namespace Game
         public Collider Collider => _collider;
         public AnimalRole AnimalRole { get; private set; }
         public bool IsDead { get; private set; }
+        public float LifetimeSeconds { get; private set; }
 
         public void Init(AnimalConfig animalConfig)
         {
@@ -31,7 +32,9 @@ namespace Game
 
         private void Update()
         {
-            AnimalRole = _animalConfig.AnimalRoleProvider.Tick(Time.deltaTime);
+            var delta = Time.deltaTime;
+            AnimalRole = _animalConfig.AnimalRoleProvider.Tick(delta);
+            LifetimeSeconds += delta;
         }
 
         private void FixedUpdate()
@@ -60,39 +63,11 @@ namespace Game
 
             if (GetInstanceID() > otherAnimal.GetInstanceID()) return;
 
-            var result = otherRole.OnCollision(AnimalRole);
-
-            if (result.Self.ReflectDirection)
-            {
-                var normal = GetCollisionNormal(collision);
-                ReflectDirection(normal);
-            }
-
-            if (result.Other.ReflectDirection)
-            {
-                var normal = GetCollisionNormal(collision);
-                otherAnimal.ReflectDirection(-normal);
-            }
-
-            if (result.Self.IsDead)
-            {
-                Die();
-            }
-
-            if (result.Other.IsDead)
-            {
-                otherAnimal.Die();
-            }
-
-            if (result.Self.Ate)
-            {
-                OnAte?.Invoke(this);
-            }
-
-            if (result.Other.Ate)
-            {
-                otherAnimal.OnAte?.Invoke(otherAnimal);
-            }
+            var context = new AnimalCollisionContext();
+            context.animalA = this;
+            context.animalB = otherAnimal;
+            context.normal = GetCollisionNormal(collision);
+            otherRole.OnCollision(AnimalRole, context);
         }
 
         public void OnCreateFromPool(IObjectPool pool)
@@ -109,6 +84,7 @@ namespace Game
             _rigidbody.linearVelocity = Vector3.zero;
             OnDeath = null;
             OnAte = null;
+            LifetimeSeconds = 0f;
         }
 
         public void OnReturnToPool()
@@ -118,9 +94,21 @@ namespace Game
             OnDeath?.Invoke(this);
         }
 
-        private void Die()
+        public void Ate()
+        {
+            OnAte?.Invoke(this);
+        }
+
+        public void Die()
         {
             _pool.ReturnToPool(this);
+        }
+
+        public void ReflectDirection(Vector3 normal)
+        {
+            if (normal == Vector3.zero) return;
+
+            _direction = Vector3.Reflect(_direction, normal);
         }
 
         private Vector3 GetCollisionNormal(Collision collision)
@@ -136,13 +124,6 @@ namespace Game
             }
 
             return Vector3.zero;
-        }
-
-        private void ReflectDirection(Vector3 normal)
-        {
-            if (normal == Vector3.zero) return;
-
-            _direction = Vector3.Reflect(_direction, normal);
         }
     }
 }

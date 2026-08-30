@@ -9,43 +9,34 @@ namespace Game
         [SerializeReference, SubclassSelector]
         private PredatorPredatorResolveBehaviour _predatorPredatorResolveBehaviour;
 
-        public override AnimalCollisionResultPair OnCollision(AnimalRole other)
+        public override void OnCollision(AnimalRole roleA, AnimalCollisionContext context)
         {
-            return other.CollideWithPredator(this);
+            roleA.CollideWithPredator(this, context);
         }
 
-        public override AnimalCollisionResultPair CollideWithPredator(AnimalPredatorRole predator)
+        public override void CollideWithPredator(AnimalPredatorRole roleB, AnimalCollisionContext context)
         {
-            var winner = _predatorPredatorResolveBehaviour.Resolve(this, predator);
+            var animalA = context.animalA;
+            var animalB = context.animalB;
 
-            var pair = new AnimalCollisionResultPair();
+            var winner = _predatorPredatorResolveBehaviour.Resolve(animalA, animalB);
 
-            var self = new AnimalCollisionResult();
-            self.IsDead = winner != this;
-            self.Ate = winner == this;
-            pair.Self = self;
-
-            var other = new AnimalCollisionResult();
-            other.IsDead = winner == this;
-            other.Ate = winner != this;
-            pair.Other = other;
-
-            return pair;
+            if (winner == animalA)
+            {
+                animalA.Ate();
+                animalB.Die();
+            }
+            else
+            {
+                animalA.Die();
+                animalB.Ate();
+            }
         }
 
-        public override AnimalCollisionResultPair CollideWithPrey(AnimalPreyRole prey)
+        public override void CollideWithPrey(AnimalPreyRole roleB, AnimalCollisionContext context)
         {
-            var pair = new AnimalCollisionResultPair();
-
-            var self = new AnimalCollisionResult();
-            self.Ate = true;
-            pair.Self = self;
-
-            var other = new AnimalCollisionResult();
-            other.IsDead = true;
-            pair.Other = other;
-
-            return pair;
+            context.animalA.Ate();
+            context.animalB.Die();
         }
     }
 }

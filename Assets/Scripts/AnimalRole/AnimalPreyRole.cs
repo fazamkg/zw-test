@@ -5,39 +5,21 @@ namespace Game
     [Serializable]
     public class AnimalPreyRole : AnimalRole
     {
-        public override AnimalCollisionResultPair OnCollision(AnimalRole other)
+        public override void OnCollision(AnimalRole roleA, AnimalCollisionContext context)
         {
-            return other.CollideWithPrey(this);
+            roleA.CollideWithPrey(this, context);
         }
 
-        public override AnimalCollisionResultPair CollideWithPredator(AnimalPredatorRole predator)
+        public override void CollideWithPredator(AnimalPredatorRole roleB, AnimalCollisionContext context)
         {
-            var pair = new AnimalCollisionResultPair();
-
-            var self = new AnimalCollisionResult();
-            self.IsDead = true;
-            pair.Self = self;
-
-            var other = new AnimalCollisionResult();
-            other.Ate = true;
-            pair.Other = other;
-
-            return pair;
+            context.animalA.Die();
+            context.animalB.Ate();
         }
 
-        public override AnimalCollisionResultPair CollideWithPrey(AnimalPreyRole prey)
+        public override void CollideWithPrey(AnimalPreyRole roleB, AnimalCollisionContext context)
         {
-            var pair = new AnimalCollisionResultPair();
-
-            var self = new AnimalCollisionResult();
-            self.ReflectDirection = true;
-            pair.Self = self;
-
-            var other = new AnimalCollisionResult();
-            other.ReflectDirection = true;
-            pair.Other = other;
-
-            return pair;
+            context.animalA.ReflectDirection(context.normal);
+            context.animalB.ReflectDirection(-context.normal);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace Game
     [Serializable]
     public abstract class PredatorPredatorResolveBehaviour
     {
-        public abstract AnimalPredatorRole Resolve(AnimalPredatorRole self, AnimalPredatorRole other);
+        public abstract Animal Resolve(Animal animalA, Animal animalB);
     } 
 }

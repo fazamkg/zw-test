@@ -6,9 +6,9 @@ namespace Game
     [Serializable]
     public class RandomSurvivorBehaviour : PredatorPredatorResolveBehaviour
     {
-        public override AnimalPredatorRole Resolve(AnimalPredatorRole self, AnimalPredatorRole other)
+        public override Animal Resolve(Animal animalA, Animal animalB)
         {
-            return Random.Range(0f, 1f) < 0.5f ? self : other;
+            return Random.Range(0f, 1f) < 0.5f ? animalA : animalB;
         }
     }
 }
