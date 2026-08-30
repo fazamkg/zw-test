@@ -54,3 +54,10 @@ The role of animal and role's rules are defined in classes inherited from abstra
 Possible movement types are defined by classes inherited from `MovementBehaviour`. This is strategy pattern. Pretty easy to scale if new movement types are needed -> just add new class and inherit it from `MovementBehaviour`.   
 
 I use a package called SerializeReference from MackySoft, which allows those strategies on `AnimalConfig` to be serialized and selected in inspector for designer-friendly solution.
+
+Here is graph of architecture. Arrows show source code dependency.   
+Orange = MonoBehaviour   
+Blue = Interface or Abstract class   
+Red = ScriptableObject   
+<img width="4227" height="5018" alt="my-cool-graph" src="https://github.com/user-attachments/assets/3a120864-7568-424f-a7ac-dcadc7068569" />
+
