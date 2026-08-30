@@ -6,6 +6,8 @@ namespace Game
     {
         float LifetimeSeconds { get; }
 
+        AnimalRole AnimalRole { get; }
+
         public void Die();
 
         public void Ate();

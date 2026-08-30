@@ -13,6 +13,8 @@ namespace GameTests
 
         public float LifetimeSeconds { get; private set; }
 
+        public AnimalRole AnimalRole { get; private set; }
+
         public AnimalMock()
         {
             DidEat = false;

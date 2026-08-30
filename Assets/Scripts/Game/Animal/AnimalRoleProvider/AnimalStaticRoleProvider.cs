@@ -17,7 +17,7 @@ namespace Game
             }
         }
 
-        public override AnimalRole Tick(float delta, Animal animal, ref float timer)
+        public override AnimalRole Tick(float delta, IAnimal animal, ref float timer)
         {
             return _animalRole;
         }
