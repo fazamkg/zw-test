@@ -38,6 +38,11 @@ namespace Game
 
         private void UpdateView()
         {
+            // Technically not going to scale well. But I prefer
+            // simple solution for UI since UI in games can end up
+            // with unique looks per counter. So for unique looks per counter manual
+            // reference wiring like I do here feels better
+
             _deadPredatorAmountText.text = _gameState.DeadAmount
                 .GetValueOrDefault(typeof(AnimalPredatorRole), 0).ToString();
             _deadPreyAmountText.text = _gameState.DeadAmount
