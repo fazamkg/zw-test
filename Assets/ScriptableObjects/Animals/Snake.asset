@@ -15,26 +15,26 @@ MonoBehaviour:
   _name: Snake
   _animalVisual: {fileID: 654990640389484794, guid: 5757ee1803e92f54cab3c74c98ad1d68, type: 3}
   _animalRoleProvider:
-    rid: 7446921453224067360
+    rid: 7446921473776681211
   _movementBehaviour:
-    rid: 7446921453224067356
+    rid: 7446921473776681210
   references:
     version: 2
     RefIds:
-    - rid: 7446921453224067356
-      type: {class: LinearMovementBehaviour, ns: Game, asm: Assembly-CSharp}
+    - rid: 7446921473776681210
+      type: {class: LinearMovementBehaviour, ns: Game, asm: Game}
       data:
         _speed: 3
-    - rid: 7446921453224067360
-      type: {class: AnimalStaticRoleProvider, ns: Game, asm: Assembly-CSharp}
+    - rid: 7446921473776681211
+      type: {class: AnimalStaticRoleProvider, ns: Game, asm: Game}
       data:
         _animalRole:
-          rid: 7446921453224067361
-    - rid: 7446921453224067361
-      type: {class: AnimalPredatorRole, ns: Game, asm: Assembly-CSharp}
+          rid: 7446921473776681212
+    - rid: 7446921473776681212
+      type: {class: AnimalPredatorRole, ns: Game, asm: Game}
       data:
         _predatorPredatorResolveBehaviour:
-          rid: 7446921453224067362
-    - rid: 7446921453224067362
-      type: {class: RandomSurvivorBehaviour, ns: Game, asm: Assembly-CSharp}
+          rid: 7446921473776681213
+    - rid: 7446921473776681213
+      type: {class: RandomSurvivorBehaviour, ns: Game, asm: Game}
       data: 

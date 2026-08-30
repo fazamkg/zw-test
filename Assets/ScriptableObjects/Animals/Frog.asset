@@ -15,23 +15,23 @@ MonoBehaviour:
   _name: Frog
   _animalVisual: {fileID: 654990640389484794, guid: 3509a8a46deb02643a10db081d349cc7, type: 3}
   _animalRoleProvider:
-    rid: 7446921473776681201
+    rid: 7446921473776681208
   _movementBehaviour:
-    rid: 7446921453224067355
+    rid: 7446921473776681206
   references:
     version: 2
     RefIds:
-    - rid: 7446921453224067355
-      type: {class: JumpMovementBehaviour, ns: Game, asm: Assembly-CSharp}
+    - rid: 7446921473776681206
+      type: {class: JumpMovementBehaviour, ns: Game, asm: Game}
       data:
         _jumpIntervalSeconds: 2
-        _jumpStrength: 3
+        _jumpStrength: 2
         _jumpAngle: 45
-    - rid: 7446921473776681201
-      type: {class: AnimalStaticRoleProvider, ns: Game, asm: Assembly-CSharp}
+    - rid: 7446921473776681208
+      type: {class: AnimalStaticRoleProvider, ns: Game, asm: Game}
       data:
         _animalRole:
-          rid: 7446921473776681202
-    - rid: 7446921473776681202
-      type: {class: AnimalPreyRole, ns: Game, asm: Assembly-CSharp}
+          rid: 7446921473776681209
+    - rid: 7446921473776681209
+      type: {class: AnimalPreyRole, ns: Game, asm: Game}
       data: 
