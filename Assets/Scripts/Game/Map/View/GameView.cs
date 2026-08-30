@@ -19,7 +19,7 @@ namespace Game
 
         public void Validate()
         {
-            if (_deadPredatorAmountText == null)
+            if (_deadPreyAmountText == null)
             {
                 throw new Exception("Dead prey amount text was null on GameView prefab." +
                     " Please fill in the reference");
