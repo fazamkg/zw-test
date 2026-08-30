@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Game
+namespace Core
 {
     public class ObjectPool<T> : IObjectPool where T : Object, IPoolable
     {

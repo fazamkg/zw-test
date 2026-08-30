@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Core
 {
     public interface IObjectPool
     {

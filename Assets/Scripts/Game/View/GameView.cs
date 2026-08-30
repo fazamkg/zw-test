@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using VContainer;
+using Core;
 
 namespace Game
 {

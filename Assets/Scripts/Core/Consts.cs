@@ -1,4 +1,4 @@
-namespace Game
+namespace Core
 {
     public static class Consts
     {
