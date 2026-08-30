@@ -16,6 +16,8 @@ namespace Game
             builder.Register<AnimalSpawner>(Lifetime.Scoped);
             builder.RegisterComponentInNewPrefab(gameConfig.GameViewPrefab, Lifetime.Scoped);
             builder.RegisterEntryPoint<Level>(Lifetime.Scoped);
+
+            builder.RegisterBuildCallback(c => c.Resolve<GameView>());
         }
     } 
 }

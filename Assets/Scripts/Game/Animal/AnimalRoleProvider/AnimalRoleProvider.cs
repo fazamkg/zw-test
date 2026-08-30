@@ -5,7 +5,9 @@ namespace Game
     [Serializable]
     public abstract class AnimalRoleProvider
     {
-        public abstract AnimalRole Tick(float delta, IAnimal animal, ref float timer);
+        public AnimalRoleProviderState CreateState() => new AnimalRoleProviderState();
+
+        public abstract AnimalRole Tick(float delta, IAnimal animal, AnimalRoleProviderState state);
 
         public abstract void Validate();
     } 

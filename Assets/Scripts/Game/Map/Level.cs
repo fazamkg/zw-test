@@ -7,7 +7,7 @@ namespace Game
     {
         private AnimalSpawner _animalSpawner;
 
-        public Level(AnimalSpawner animalSpawner, GameView gameView)
+        public Level(AnimalSpawner animalSpawner)
         {
             _animalSpawner = animalSpawner;
         }

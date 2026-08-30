@@ -13,7 +13,7 @@ namespace Game
             // nothing to validate
         }
 
-        public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody, ref float timer)
+        public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody, MovementState state)
         {
             var originalVelocity = rigidbody.linearVelocity;
 

@@ -25,13 +25,13 @@ namespace Game
             _startFrom.Validate();
         }
 
-        public override AnimalRole Tick(float delta, IAnimal animal, ref float timer)
+        public override AnimalRole Tick(float delta, IAnimal animal, AnimalRoleProviderState state)
         {
-            timer += delta;
+            state.timer += delta;
 
-            if (timer > _morphIntervalSeconds)
+            if (state.timer > _morphIntervalSeconds)
             {
-                timer = 0f;
+                state.timer = 0f;
 
                 if (animal.AnimalRole is AnimalPreyRole)
                 {

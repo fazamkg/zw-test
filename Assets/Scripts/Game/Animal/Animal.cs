@@ -18,8 +18,8 @@ namespace Game
 
         private AnimalConfig _animalConfig;
         private Vector3 _direction;
-        private float _movementTimer;
-        private float _roleTimer;
+        private AnimalRoleProviderState _animalRoleProviderState;
+        private MovementState _movementState;
         private IObjectPool _ownPool;
         private ObjectPool<AnimalVisual> _visualPool;
         private AnimalVisual _visual;
@@ -51,18 +51,21 @@ namespace Game
             _visual = _visualPool.Get();
             _visual.transform.SetParent(transform);
             _visual.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            _animalRoleProviderState = _animalConfig.AnimalRoleProvider.CreateState();
+            _movementState = _animalConfig.MovementBehaviour.CreateState();
         }
 
         private void Update()
         {
             var delta = Time.deltaTime;
-            AnimalRole = _animalConfig.AnimalRoleProvider.Tick(delta, this, ref _roleTimer);
+            AnimalRole = _animalConfig.AnimalRoleProvider.Tick(delta, this, _animalRoleProviderState);
             LifetimeSeconds += delta;
         }
 
         private void FixedUpdate()
         {
-            _animalConfig.MovementBehaviour.Tick(Time.fixedDeltaTime, _direction, _rigidbody, ref _movementTimer);
+            _animalConfig.MovementBehaviour.Tick(Time.fixedDeltaTime, _direction, _rigidbody, _movementState);
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -102,8 +105,6 @@ namespace Game
         {
             gameObject.SetActive(true);
             _direction = Vector3.zero;
-            _movementTimer = 0f;
-            _roleTimer = 0f;
             IsDead = false;
             _rigidbody.linearVelocity = Vector3.zero;
             OnDeath = null;
@@ -116,8 +117,6 @@ namespace Game
             _visual.transform.SetParent(null);
             _visualPool.ReturnToPool(_visual);
             gameObject.SetActive(false);
-            IsDead = true;
-            OnDeath?.Invoke(this);
         }
 
         public void Ate()
@@ -127,6 +126,8 @@ namespace Game
 
         public void Die()
         {
+            IsDead = true;
+            OnDeath?.Invoke(this);
             _ownPool.ReturnToPool(this);
         }
 

@@ -24,6 +24,9 @@ namespace Game
 
         private void Animal_OnDeath(Animal dead)
         {
+            dead.OnDeath -= Animal_OnDeath;
+            dead.OnAte -= Animal_OnAte;
+
             DeadAmount.Bump(dead.AnimalRole.GetType());
 
             OnDeadAmountUpdated?.Invoke();

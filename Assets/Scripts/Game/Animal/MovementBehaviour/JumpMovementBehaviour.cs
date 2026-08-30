@@ -23,14 +23,14 @@ namespace Game
             }
         }
 
-        public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody, ref float timer)
+        public override void Tick(float delta, Vector3 direction, Rigidbody rigidbody, MovementState state)
         {
             direction = direction.normalized;
 
-            timer += delta;
-            if (timer > _jumpIntervalSeconds)
+            state.timer += delta;
+            if (state.timer > _jumpIntervalSeconds)
             {
-                timer = 0f;
+                state.timer = 0f;
 
                 var rotateAxis = Vector3.Cross(direction, Vector3.up);
 
