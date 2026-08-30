@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Snake
   m_EditorClassIdentifier: Assembly-CSharp::Game.AnimalConfig
   _name: Snake
+  _animalVisual: {fileID: 654990640389484794, guid: 5757ee1803e92f54cab3c74c98ad1d68, type: 3}
   _animalRoleProvider:
     rid: 7446921453224067360
   _movementBehaviour:

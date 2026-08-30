@@ -12,5 +12,6 @@ namespace Game
         public GameState gameState;
         public List<Vector3> candidatesBuffer;
         public ObjectPool<Animal> animalPool;
+        public Dictionary<AnimalVisual, ObjectPool<AnimalVisual>> visualPools = new();
     }
 }

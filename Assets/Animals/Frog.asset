@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Frog
   m_EditorClassIdentifier: Assembly-CSharp::Game.AnimalConfig
   _name: Frog
+  _animalVisual: {fileID: 654990640389484794, guid: 3509a8a46deb02643a10db081d349cc7, type: 3}
   _animalRoleProvider:
     rid: 7446921473776681201
   _movementBehaviour:

@@ -3,6 +3,8 @@ using System;
 
 namespace Game
 {
+    // This is bonus behaviour. Just an example of extensibility
+
     [Serializable]
     public class AnimalMorphRoleProvider : AnimalRoleProvider
     {
@@ -14,6 +16,8 @@ namespace Game
 
         public override AnimalRole Tick(float delta, Animal animal, ref float timer)
         {
+            timer += delta;
+
             if (timer > _morphIntervalSeconds)
             {
                 timer = 0f;

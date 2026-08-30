@@ -18,17 +18,24 @@ namespace Game
         private Vector3 _direction;
         private float _movementTimer;
         private float _roleTimer;
-        private IObjectPool _pool;
+        private IObjectPool _ownPool;
+        private ObjectPool<AnimalVisual> _visualPool;
+        private AnimalVisual _visual;
 
         public Collider Collider => _collider;
         public AnimalRole AnimalRole { get; private set; }
         public bool IsDead { get; private set; }
         public float LifetimeSeconds { get; private set; }
 
-        public void Init(AnimalConfig animalConfig)
+        public void Init(AnimalConfig animalConfig, ObjectPool<AnimalVisual> visualPool)
         {
             _animalConfig = animalConfig;
             _direction = Helper.GetRandomDirectionHorizontal();
+            _visualPool = visualPool;
+
+            _visual = _visualPool.Get();
+            _visual.transform.SetParent(transform);
+            _visual.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
         private void Update()
@@ -73,7 +80,7 @@ namespace Game
 
         public void OnCreateFromPool(IObjectPool pool)
         {
-            _pool = pool;
+            _ownPool = pool;
         }
 
         public void OnPopFromPool()
@@ -91,6 +98,8 @@ namespace Game
 
         public void OnReturnToPool()
         {
+            _visual.transform.SetParent(null);
+            _visualPool.ReturnToPool(_visual);
             gameObject.SetActive(false);
             IsDead = true;
             OnDeath?.Invoke(this);
@@ -103,7 +112,7 @@ namespace Game
 
         public void Die()
         {
-            _pool.ReturnToPool(this);
+            _ownPool.ReturnToPool(this);
         }
 
         public void ReflectDirection(Vector3 normal)

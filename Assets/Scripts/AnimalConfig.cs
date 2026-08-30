@@ -6,10 +6,12 @@ namespace Game
     public class AnimalConfig : ScriptableObject
     {
         [SerializeField] private string _name = Consts.ANIMAL_DEFAULT_NAME;
+        [SerializeField] private AnimalVisual _animalVisual;
         [SerializeReference, SubclassSelector] private AnimalRoleProvider _animalRoleProvider;
         [SerializeReference, SubclassSelector] private MovementBehaviour _movementBehaviour;
 
         public string Name => _name;
+        public AnimalVisual AnimalVisual => _animalVisual;
         public AnimalRoleProvider AnimalRoleProvider => _animalRoleProvider;
         public MovementBehaviour MovementBehaviour => _movementBehaviour;
     } 

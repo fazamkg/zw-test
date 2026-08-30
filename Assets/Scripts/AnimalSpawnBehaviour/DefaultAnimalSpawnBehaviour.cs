@@ -41,9 +41,13 @@ namespace Game
             var spawnArea = input.map.SpawnArea;
 
             var animalConfig = _animalPool.GetRandom();
-
             var animalInstance = input.animalPool.Get();
-            animalInstance.Init(animalConfig);
+
+            var animalVisualPrefab = animalConfig.AnimalVisual;
+            var animalVisualPool = input.visualPools.GetValueOrCreate(animalVisualPrefab,
+                () => new ObjectPool<AnimalVisual>(animalVisualPrefab));
+
+            animalInstance.Init(animalConfig, animalVisualPool);
 
             var position = Helper.SampleRandomNonOccupiedPositionOnRectGroundNonAlloc(spawnArea,
                 animalInstance.Collider, 

@@ -7,7 +7,7 @@ namespace Game
     public class AnimalPredatorRole : AnimalRole
     {
         [SerializeReference, SubclassSelector]
-        private PredatorPredatorResolveBehaviour _predatorPredatorResolveBehaviour;
+        private PredatorPredatorResolveBehaviour _predatorPredatorResolveBehaviour = new RandomSurvivorBehaviour();
 
         public override void OnCollision(AnimalRole roleA, AnimalCollisionContext context)
         {

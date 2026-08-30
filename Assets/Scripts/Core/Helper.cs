@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game
 {
@@ -9,6 +11,16 @@ namespace Game
         {
             dictionary.TryAdd(key, 0);
             dictionary[key]++;
+        }
+
+        public static T GetValueOrCreate<T, T2>(this Dictionary<T2, T> dictionary, T2 key, Func<T> creator)
+        {
+            if (dictionary.ContainsKey(key) == false)
+            {
+                dictionary[key] = creator();
+            }
+
+            return dictionary[key];
         }
 
         public static T GetValueOrDefault<T, T2>(this Dictionary<T2, T> dictionary, T2 key, T defaultValue)
@@ -41,7 +53,7 @@ namespace Game
             var colliderExtents = colliderBounds.extents;
 
             var fromX = min.x + colliderExtents.x;
-            var fromY = max.y + colliderExtents.y + 0.1f;
+            var fromY = max.y + colliderExtents.y + Consts.SAMPLE_GROUND_OFFSET;
             var fromZ = min.z + colliderExtents.z;
 
             var toX = max.x - colliderExtents.x;
