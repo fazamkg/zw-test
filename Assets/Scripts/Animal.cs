@@ -81,6 +81,7 @@ namespace Game
             gameObject.SetActive(true);
             _direction = Vector3.zero;
             _movementTimer = 0f;
+            _roleTimer = 0f;
             IsDead = false;
             _rigidbody.linearVelocity = Vector3.zero;
             OnDeath = null;

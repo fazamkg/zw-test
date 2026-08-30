@@ -1,14 +1,12 @@
 namespace Game
 {
-    public class AnimalFactory
+    public class AnimalSpawner
     {
-        private Map _map;
         private GameConfig _gameConfig;
         private AnimalSpawnState _spawnInput;
 
-        public AnimalFactory(GameState gameState, Map map, GameConfig gameConfig)
+        public AnimalSpawner(GameState gameState, Map map, GameConfig gameConfig)
         {
-            _map = map;
             _gameConfig = gameConfig;
 
             _spawnInput = new AnimalSpawnState();

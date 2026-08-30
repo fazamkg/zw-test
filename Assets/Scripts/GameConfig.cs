@@ -7,10 +7,10 @@ namespace Game
     {
         [SerializeReference, SubclassSelector] private AnimalSpawnBehaviour _animalSpawnBehaviour;
         [SerializeField] private Animal _animalPrefab;
-        [SerializeField] private GameView _gameView;
+        [SerializeField] private GameView _gameViewPrefab;
 
         public AnimalSpawnBehaviour AnimalSpawnBehaviour => _animalSpawnBehaviour;
         public Animal AnimalPrefab => _animalPrefab;
-        public GameView GameView => _gameView;
+        public GameView GameViewPrefab => _gameViewPrefab;
     } 
 }

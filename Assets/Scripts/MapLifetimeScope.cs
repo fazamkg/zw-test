@@ -10,8 +10,11 @@ namespace Game
 
         protected override void Configure(IContainerBuilder builder)
         {
+            var gameConfig = Parent.Container.Resolve<GameConfig>();
+
             builder.RegisterComponent(_map);
-            builder.Register<AnimalFactory>(Lifetime.Scoped);
+            builder.Register<AnimalSpawner>(Lifetime.Scoped);
+            builder.RegisterComponentInNewPrefab(gameConfig.GameViewPrefab, Lifetime.Scoped);
             builder.RegisterEntryPoint<Level>(Lifetime.Scoped);
         }
     } 
