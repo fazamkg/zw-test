@@ -9,7 +9,7 @@ namespace Game
     public class AnimalMorphRoleProvider : AnimalRoleProvider
     {
         [SerializeField] private float _morphIntervalSeconds = 3f;
-        [SerializeReference, SubclassSelector] private AnimalRole _startFrom;
+        [SerializeReference, SubclassSelector] private AnimalRole _startFrom = new AnimalPredatorRole();
 
         private AnimalPreyRole _prey = new();
         private AnimalPredatorRole _predator = new();

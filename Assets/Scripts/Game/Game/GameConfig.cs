@@ -6,7 +6,8 @@ namespace Game
     [CreateAssetMenu(fileName = Consts.GAME_CONFIG_FILE_NAME, menuName = Consts.GAME_CONFIG_MENU_NAME)]
     public class GameConfig : ScriptableObject
     {
-        [SerializeReference, SubclassSelector] private AnimalSpawnBehaviour _animalSpawnBehaviour;
+        [SerializeReference, SubclassSelector] private AnimalSpawnBehaviour _animalSpawnBehaviour =
+            new DefaultAnimalSpawnBehaviour();
         [SerializeField] private Animal _animalPrefab;
         [SerializeField] private GameView _gameViewPrefab;
 

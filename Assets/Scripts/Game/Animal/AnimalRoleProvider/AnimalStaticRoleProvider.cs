@@ -6,7 +6,7 @@ namespace Game
     [Serializable]
     public class AnimalStaticRoleProvider : AnimalRoleProvider
     {
-        [SerializeReference, SubclassSelector] private AnimalRole _animalRole;
+        [SerializeReference, SubclassSelector] private AnimalRole _animalRole = new AnimalPreyRole();
 
         public override AnimalRole Tick(float delta, Animal animal, ref float timer)
         {
